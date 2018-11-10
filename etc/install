@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Set DOTPATH as default variable
+# This environment variable is limited to this shell script
+if [ -z "${DOTPATH:-}" ]; then
+  DOTPATH=~/dotfiles; export DOTPATH
+fi
+
+DOTFILES_GITHUB="https://github.com/prmcy/dotfiles.git"; export DOTFILES_GITHUB
+
+has() {
+  type "$1" > /dev/null 2>&1
+}
+
+if has "brew"; then
+  echo "You has already installed Homebrew"
+else
+  source ./init/_brew.sh
+fi
+
+

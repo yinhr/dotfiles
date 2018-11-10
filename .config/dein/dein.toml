@@ -1,0 +1,104 @@
+# dein.toml
+
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+# Color
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+hook_add = '''
+source ~/.config/nvim/plugins/iceberg.rc.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+hook_post_update = '''
+  if dein#util#_is_windows()
+    let cmd = 'tools\\update-dll-mingw'
+  elseif dein#util#_is_cygwin()
+    let cmd = 'make -f make_cygwin.mak'
+  elseif executable('gmake')
+    let cmd = 'gmake'
+  else
+    let cmd = 'make'
+  endif
+  let g:dein#plugin.build = cmd
+'''
+
+# linter
+
+[[plugin]]
+repo = 'neomake/neomake'
+if = "has('nvim')"
+hook_add = '''
+source ~/.config/nvim/plugins/neomake.rc.vim
+'''
+
+# powerline
+
+[[plugin]]
+repo = 'majutsushi/tagbar'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+source ~/.config/nvim/plugins/lightline.rc.vim
+'''
+
+[[plugins]]
+repo = 'gcmt/taboo.vim'
+depends = 'vim-airline'
+hook_add = '''
+"set guioptions-=e
+"set sessionoptions+=tabpages,globals
+let g:taboo_tab_format=' %N %f%m %w '
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'tomtom/tcomment_vim'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+hook_add = '''
+source ~/.config/nvim/plugins/vim-surround.rc.vim
+'''
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+
+# terminal
+
+[[plugins]]
+repo = 'kassio/neoterm'
+if = "has('nvim')"
+hook_add = '''
+source ~/.config/nvim/plugins/neoterm.rc.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/vimshell'
+if = "!has('nvim')"
+hook_add = '''
+source ~/.config/nvim/plugins/vimshell.rc.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+if = "!has('nvim')"
+build = 'make'
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
